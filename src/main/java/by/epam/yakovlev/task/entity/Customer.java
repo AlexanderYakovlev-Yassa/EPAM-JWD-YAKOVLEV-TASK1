@@ -1,15 +1,13 @@
 package by.epam.yakovlev.task.entity;
 
-import java.util.Objects;
-
 public class Customer {
 
-    private int  id;
+    private String passportNumber;
     private String firstName;
     private String lastName;
 
-    public Customer(int id, String firstName, String lastName) {
-        this.id = id;
+    public Customer(String passportNumber, String firstName, String lastName) {
+        this.passportNumber = passportNumber;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -17,8 +15,8 @@ public class Customer {
     public Customer() {
     }
 
-    public int getId() {
-        return id;
+    public String getPassportNumber() {
+        return passportNumber;
     }
 
     public String getFirstName() {
@@ -45,13 +43,13 @@ public class Customer {
         if (this == o){
             return true;
         }
-        if (!(this.getClass() == o.getClass() )){
+        if (this.getClass() != o.getClass() ){
             return false;
         }
 
         Customer customer = (Customer) o;
 
-        return getId() == customer.getId() &&
+        return getPassportNumber().equals(customer.getPassportNumber()) &&
                 getFirstName().equals(customer.getFirstName()) &&
                 getLastName().equals(customer.getLastName());
     }
@@ -64,18 +62,18 @@ public class Customer {
 
         res = res * prime + (this.firstName != null ? this.firstName.hashCode() : 0);
         res = res * prime + (this.lastName != null ? this.lastName.hashCode() : 0);
-        res = res * prime + id;
+        res = res * prime + (this.passportNumber != null ? this.passportNumber.hashCode() : 0);
 
         return res;
     }
 
     @Override
     public String toString() {
-
-        return this.getClass().getName() + " {" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
+        final StringBuilder sb = new StringBuilder(getClass().getName() + " {");
+        sb.append("passportNumber='").append(passportNumber).append('\'');
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }
