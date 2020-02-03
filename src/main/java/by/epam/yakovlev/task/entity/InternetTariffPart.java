@@ -6,35 +6,45 @@ import by.epam.yakovlev.task.StringConstant;
 import java.util.Objects;
 
 /**
- * Represents the part of a tariff that responsible for internet*/
+ * Represents the part of a tariff that responsible for internet
+ */
 public class InternetTariffPart {
 
     private String internetTariffPartName;
     /**
      * The measure unit of traffic limit is bite
-     * -1 mean unlimited traffic*/
+     * -1 mean unlimited traffic
+     */
     private int trafficLimit;
     /**
      * The measure unit of traffic speed limit is Byte per second
-     * -1 mean unlimited speed*/
+     * -1 mean unlimited speed
+     */
     private int trafficSpeedLimit;
     /**
      * The measure unit of traffic fee is BYN per 1 048 576 Byte
      */
     private double trafficFee;
+    private int includedTraffic;
 
     public InternetTariffPart() {
         this.internetTariffPartName = StringConstant.NO_NAME.getValue();
         this.trafficFee = 0;
         this.trafficLimit = -1;
         this.trafficSpeedLimit = -1;
+        this.includedTraffic = 0;
     }
 
-    public InternetTariffPart(String internetTariffPartName, int trafficLimit, int trafficSpeedLimit, double trafficFee) {
+    public InternetTariffPart(String internetTariffPartName,
+                              int trafficLimit,
+                              int trafficSpeedLimit,
+                              double trafficFee,
+                              int includedTraffic) {
         this.internetTariffPartName = internetTariffPartName;
         this.trafficLimit = trafficLimit;
         this.trafficSpeedLimit = trafficSpeedLimit;
         this.trafficFee = trafficFee;
+        this.includedTraffic = includedTraffic;
     }
 
     public String getInternetTariffPartName() {
@@ -69,6 +79,14 @@ public class InternetTariffPart {
         this.trafficFee = trafficFee;
     }
 
+    public int getIncludedTraffic() {
+        return includedTraffic;
+    }
+
+    public void setIncludedTraffic(int includedTraffic) {
+        this.includedTraffic = includedTraffic;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null) {
@@ -83,10 +101,11 @@ public class InternetTariffPart {
 
         InternetTariffPart that = (InternetTariffPart) o;
 
-        return trafficLimit == that.trafficLimit &&
+        return internetTariffPartName.equals(that.internetTariffPartName) &&
+                trafficLimit == that.trafficLimit &&
                 trafficSpeedLimit == that.trafficSpeedLimit &&
-                Double.compare(that.trafficFee, trafficFee) == 0 &&
-                Objects.equals(internetTariffPartName, that.internetTariffPartName);
+                normalizeCost(trafficFee) == normalizeCost(that.trafficFee) &&
+                includedTraffic == that.includedTraffic;
     }
 
     @Override
@@ -95,9 +114,10 @@ public class InternetTariffPart {
         int res = 7;
 
         res = res * prime + (this.internetTariffPartName != null ? this.internetTariffPartName.hashCode() : 0);
-        res = res * prime + trafficLimit * prime;
-        res = res * prime + trafficSpeedLimit * prime;
-        res = res * prime + (int)(this.trafficFee * IntConstant.MAX_CURRENCY_DIVIDER.getValue());
+        res = res * prime + trafficLimit;
+        res = res * prime + trafficSpeedLimit;
+        res = res * prime + normalizeCost(trafficFee);
+        res = res * prime + includedTraffic;
 
         return res;
     }
@@ -113,5 +133,9 @@ public class InternetTariffPart {
         sb.append('}');
 
         return sb.toString();
+    }
+
+    private int normalizeCost(double cost){
+        return (int)(cost * IntConstant.MAX_CURRENCY_DIVIDER.getValue());
     }
 }

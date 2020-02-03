@@ -44,9 +44,9 @@ public enum  EntityLogicImpl implements EntityLogic {
     }
 
     @Override
-    public PhoneTariffPart makePhoneTariffPart(String string) throws EntityMakingException {
+    public PhoneTariffPart createPhoneTariffPart(String string) throws EntityMakingException {
 
-        final int fieldNumber = 3;
+        final int fieldNumber = 5;
         final int maxNameLength = 255;
 
         if (string == null) {
@@ -67,18 +67,30 @@ public enum  EntityLogicImpl implements EntityLogic {
         String name = fields[0];
         double incomeCallFee = util.stringToPositiveDouble(fields[1]);
         double outcomeCallFee = util.stringToPositiveDouble(fields[2]);
+        int innerProviderIncludedMinutes = util.stringToPositiveInt(fields[3]);
+        int anyProviderIncludedMinutes = util.stringToPositiveInt(fields[4]);
 
         PhoneTariffPart phoneTariffPart = new PhoneTariffPart(
-                name, incomeCallFee, outcomeCallFee);
+                name, incomeCallFee, outcomeCallFee, innerProviderIncludedMinutes, anyProviderIncludedMinutes);
 
         res = phoneTariffPart;
 
         return res;
     }
-
+//******************************************************************************************************************************
     @Override
-    public InternetTariffPart makeInternetTariffPart(String string) throws EntityMakingException {
-        final int fieldNumber = 4;
+    public Optional<String> phoneTariffPartToString(Optional<PhoneTariffPart> phoneTariffPart) {
+
+        /*String res = String.format("%-10s%10d%10d%10.3f%10d",
+                phoneTariffPart.map(PhoneTariffPart::getPhoneTariffPartName).orElse(""),
+                )*/
+
+        return null;
+    }
+//*******************************************************************************************************************************
+    @Override
+    public InternetTariffPart createInternetTariffPart(String string) throws EntityMakingException {
+        final int fieldNumber = 5;
         final int maxNameLength = 255;
 
         if (string == null) {
@@ -100,9 +112,10 @@ public enum  EntityLogicImpl implements EntityLogic {
         int trafficLimit = util.stringToPositiveInt(fields[1]);
         int trafficSpeedLimit = util.stringToPositiveInt(fields[2]);
         double trafficFee = util.stringToPositiveDouble(fields[3]);
+        int includedTraffic = util.stringToPositiveInt(fields[4]);
 
         InternetTariffPart internetTariffPart = new InternetTariffPart(
-                name, trafficLimit, trafficSpeedLimit, trafficFee);
+                name, trafficLimit, trafficSpeedLimit, trafficFee, includedTraffic);
 
         res = internetTariffPart;
 

@@ -17,8 +17,8 @@ public interface EntityLogic {
 
     Optional<Customer> getCustomer(String firstName, String lastName, String passport);
 
-    InternetTariffPart makeInternetTariffPart(String string) throws EntityMakingException;
-    PhoneTariffPart makePhoneTariffPart(String string) throws EntityMakingException;
+    Optional<String> phoneTariffPartToString(Optional<PhoneTariffPart> phoneTariffPart);
 
-
+    InternetTariffPart createInternetTariffPart(String string) throws EntityMakingException;
+    PhoneTariffPart createPhoneTariffPart(String string) throws EntityMakingException;
 }

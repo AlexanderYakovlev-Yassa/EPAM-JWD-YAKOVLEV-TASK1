@@ -17,7 +17,7 @@ public class EntityLogicTest {
         boolean flag = true;
 
         try {
-            internetTariffPart = logic.makeInternetTariffPart("Internet   1000 2000 0.005");
+            internetTariffPart = logic.createInternetTariffPart("Internet   1000 2000 0.005 0");
         } catch (EntityMakingException e) {
             flag = false;
             e.printStackTrace();
@@ -52,7 +52,7 @@ public class EntityLogicTest {
         boolean flag = true;
 
         try {
-            internetTariffPart = logic.makeInternetTariffPart("Internet 1000 t 2000 0.005");
+            internetTariffPart = logic.createInternetTariffPart("Internet 1000 t 2000 0.005 0");
         } catch (EntityMakingException e) {
             flag = false;
         }
