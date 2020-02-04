@@ -1,7 +1,7 @@
 package by.epam.yakovlev.task.dao.impl;
 
 import by.epam.yakovlev.task.dao.DAOLogic;
-import by.epam.yakovlev.task.data.DataFiles;
+import by.epam.yakovlev.task.DataFiles;
 import by.epam.yakovlev.task.entity.PhoneExtension;
 import by.epam.yakovlev.task.exception.DAOException;
 import by.epam.yakovlev.task.exception.FileUtileException;
@@ -16,7 +16,7 @@ public class DAOLogicImplFile implements DAOLogic {
 private final static FileUtil FILE_UTIL = FileUtil.INSTANCE;
 
     @Override
-    public Optional<HashSet<PhoneExtension>> getPhoneTariffPartSet() throws DAOException {
+    public Optional<HashSet<PhoneExtension>> getPhoneExtensionSet() throws DAOException {
         ArrayList<String> list = null;
 
         try {
@@ -31,22 +31,12 @@ private final static FileUtil FILE_UTIL = FileUtil.INSTANCE;
     }
 
     @Override
-    public Optional<HashSet<PhoneExtension>> getInternetTariffPartSet() {
+    public Optional<HashSet<PhoneExtension>> getInternetExtensionSet() {
         return Optional.empty();
     }
 
     @Override
-    public Optional<HashSet<PhoneExtension>> getMobilPhoneTariffSet() {
+    public Optional<HashSet<PhoneExtension>> getTariffSet() {
         return Optional.empty();
     }
 
-    @Override
-    public Optional<HashSet<PhoneExtension>> getInternetTariffSet() {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<HashSet<PhoneExtension>> getSmartPhoneTarifSet() {
-        return Optional.empty();
-    }
-}

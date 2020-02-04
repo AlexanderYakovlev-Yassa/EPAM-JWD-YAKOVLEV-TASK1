@@ -1,6 +1,6 @@
 package by.epam.yakovlev.task.repository.impl;
 
-import by.epam.yakovlev.task.data.DataFiles;
+import by.epam.yakovlev.task.DataFiles;
 import by.epam.yakovlev.task.entity.PhoneExtension;
 import by.epam.yakovlev.task.exception.FileUtileException;
 import by.epam.yakovlev.task.exception.RepositoryException;

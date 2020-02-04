@@ -8,9 +8,8 @@ import java.util.Optional;
 
 public interface DAOLogic {
 
-    Optional<HashSet<PhoneExtension>> getPhoneTariffPartSet() throws DAOException;
-    Optional<HashSet<PhoneExtension>> getInternetTariffPartSet();
-    Optional<HashSet<PhoneExtension>> getMobilPhoneTariffSet();
-    Optional<HashSet<PhoneExtension>> getInternetTariffSet();
-    Optional<HashSet<PhoneExtension>> getSmartPhoneTarifSet();
+    Optional<HashSet<PhoneExtension>> getPhoneExtensionSet() throws DAOException;
+    Optional<HashSet<PhoneExtension>> getInternetExtensionSet();
+    Optional<HashSet<PhoneExtension>> getTariffSet();
+
 }
