@@ -3,51 +3,54 @@ package by.epam.yakovlev.task.entity;
 import by.epam.yakovlev.task.IntConstant;
 import by.epam.yakovlev.task.StringConstant;
 
-public class PhoneTariffPart {
+import java.io.Serializable;
+import java.math.BigDecimal;
 
-    private String phoneTariffPartName;
-    private double incomeCallFee;
-    private double outcomeCallFee;
+public class PhoneExtension implements Serializable, TariffExtension{
+
+    private String phoneExtensionName;
+    private BigDecimal incomeCallFee;
+    private BigDecimal outcomeCallFee;
     private int innerProviderIncludedMinutes;
     private int anyProviderIncludedMinutes;
 
-    public PhoneTariffPart() {
-        phoneTariffPartName = StringConstant.NO_NAME.getValue();
+    public PhoneExtension() {
+        phoneExtensionName = StringConstant.NO_NAME.getValue();
     }
 
-    public PhoneTariffPart(String phoneTariffPartName,
-                           double incomeCallFee,
-                           double outcomeCallFee,
-                           int innerProviderIncludedMinutes,
-                           int anyProviderIncludedMinutes) {
-        this.phoneTariffPartName = phoneTariffPartName;
+    public PhoneExtension(String phoneExtensionName,
+                          BigDecimal incomeCallFee,
+                          BigDecimal outcomeCallFee,
+                          int innerProviderIncludedMinutes,
+                          int anyProviderIncludedMinutes) {
+        this.phoneExtensionName = phoneExtensionName;
         this.incomeCallFee = incomeCallFee;
         this.outcomeCallFee = outcomeCallFee;
         this.innerProviderIncludedMinutes = innerProviderIncludedMinutes;
         this.anyProviderIncludedMinutes = anyProviderIncludedMinutes;
     }
 
-    public String getPhoneTariffPartName() {
-        return phoneTariffPartName;
+    public String getPhoneExtensionName() {
+        return phoneExtensionName;
     }
 
-    public void setPhoneTariffPartName(String phoneTariffPartName) {
-        this.phoneTariffPartName = phoneTariffPartName;
+    public void setPhoneExtensionName(String phoneExtensionName) {
+        this.phoneExtensionName = phoneExtensionName;
     }
 
-    public double getIncomeCallFee() {
+    public BigDecimal getIncomeCallFee() {
         return incomeCallFee;
     }
 
-    public void setIncomeCallFee(double incomeCallFee) {
+    public void setIncomeCallFee(BigDecimal incomeCallFee) {
         this.incomeCallFee = incomeCallFee;
     }
 
-    public double getOutcomeCallFee() {
+    public BigDecimal getOutcomeCallFee() {
         return outcomeCallFee;
     }
 
-    public void setOutcomeCallFee(double outcomeCallFee) {
+    public void setOutcomeCallFee(BigDecimal outcomeCallFee) {
         this.outcomeCallFee = outcomeCallFee;
     }
 
@@ -78,10 +81,10 @@ public class PhoneTariffPart {
         if (getClass() != o.getClass()) {
             return false;
         }
-        PhoneTariffPart that = (PhoneTariffPart) o;
-        return phoneTariffPartName.equals(that.phoneTariffPartName) &&
-                normalizeCost(incomeCallFee) == normalizeCost(that.incomeCallFee) &&
-                normalizeCost(outcomeCallFee) == normalizeCost(that.outcomeCallFee) &&
+        PhoneExtension that = (PhoneExtension) o;
+        return phoneExtensionName.equals(that.phoneExtensionName) &&
+                incomeCallFee.equals(that.incomeCallFee) &&
+                outcomeCallFee.equals(that.outcomeCallFee) &&
                 this.innerProviderIncludedMinutes == that.innerProviderIncludedMinutes &&
                 this.anyProviderIncludedMinutes == that.anyProviderIncludedMinutes;
     }
@@ -91,9 +94,9 @@ public class PhoneTariffPart {
         int prime = 31;
         int res = 7;
 
-        res = res * prime + (this.phoneTariffPartName != null ? this.phoneTariffPartName.hashCode() : 0);
-        res = res * prime + normalizeCost(incomeCallFee);
-        res = res * prime + normalizeCost(outcomeCallFee);
+        res = res * prime + (this.phoneExtensionName != null ? this.phoneExtensionName.hashCode() : 0);
+        res = res * prime + (incomeCallFee != null ? incomeCallFee.hashCode() : 0);
+        res = res * prime + (outcomeCallFee != null ? outcomeCallFee.hashCode() : 0);
         res = res * prime + innerProviderIncludedMinutes;
         res = res * prime + anyProviderIncludedMinutes;
 
@@ -103,7 +106,7 @@ public class PhoneTariffPart {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder(getClass().getName() + "{");
-        sb.append("phoneTariffPartName='").append(phoneTariffPartName).append('\'');
+        sb.append("phoneExtensionName='").append(phoneExtensionName).append('\'');
         sb.append(", incomeCallFee=").append(incomeCallFee);
         sb.append(", outcomeCallFee=").append(outcomeCallFee);
         sb.append(", innerProviderIncludedMinutes=").append(innerProviderIncludedMinutes);

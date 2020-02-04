@@ -1,10 +1,7 @@
 package by.epam.yakovlev.task.repository.impl;
 
-import by.epam.yakovlev.task.Factory;
 import by.epam.yakovlev.task.data.DataFiles;
-import by.epam.yakovlev.task.entity.PhoneTariffPart;
-import by.epam.yakovlev.task.entity_logic.EntityLogic;
-import by.epam.yakovlev.task.exception.EntityMakingException;
+import by.epam.yakovlev.task.entity.PhoneExtension;
 import by.epam.yakovlev.task.exception.FileUtileException;
 import by.epam.yakovlev.task.exception.RepositoryException;
 import by.epam.yakovlev.task.repository.RepositoryLogic;
@@ -19,10 +16,10 @@ public enum  RepositoryLogicImplFile implements RepositoryLogic {
     INSTANCE;
 
     private static FileUtil fileUtil = FileUtil.INSTANCE;
-    private static EntityLogic entityLogic = Factory.INSTANCE.getEntityLogic();
+   // private static EntityLogic entityLogic = Factory.INSTANCE.getEntityLogic();
 
     @Override
-    public HashSet<PhoneTariffPart> getPhoneTariffPartSet() throws RepositoryException {
+    public HashSet<PhoneExtension> getPhoneTariffPartSet() throws RepositoryException {
 
         ArrayList<String> list = null;
 
@@ -32,40 +29,40 @@ public enum  RepositoryLogicImplFile implements RepositoryLogic {
             throw new RepositoryException("Fail access to repository 'phone part'", e);
         }
 
-        HashSet<PhoneTariffPart> phoneTariffPartSet = convertToPhonePartSet(list);
+        HashSet<PhoneExtension> phoneExtensionSet = convertToPhonePartSet(list);
 
-        return phoneTariffPartSet;
+        return phoneExtensionSet;
     }
 
     @Override
-    public boolean addPhoneTariffPart(Optional<PhoneTariffPart> part) {
+    public boolean addPhoneTariffPart(Optional<PhoneExtension> part) {
 
 
         return false;
     }
 
     @Override
-    public boolean removePhoneTariffPart(Optional<PhoneTariffPart> part) {
+    public boolean removePhoneTariffPart(Optional<PhoneExtension> part) {
         return false;
     }
 
     @Override
-    public Optional<PhoneTariffPart> findByName(String name) {
+    public Optional<PhoneExtension> findByName(String name) {
         return Optional.empty();
     }
 
-    private HashSet<PhoneTariffPart> convertToPhonePartSet(ArrayList<String> list) throws RepositoryException {
+    private HashSet<PhoneExtension> convertToPhonePartSet(ArrayList<String> list) throws RepositoryException {
 
-        HashSet<PhoneTariffPart> set = new HashSet<PhoneTariffPart>();
+        HashSet<PhoneExtension> set = new HashSet<PhoneExtension>();
 
-        for (String s : list){
+        /*for (String s : list){
             try {
-                set.add(entityLogic.createPhoneTariffPart(s));
+                //set.add(entityLogic.createPhoneTariffPart(s));
             } catch (EntityMakingException e) {
                 //throw new RepositoryException("Fail create of 'phone tariff part'", e);
                 //log
             }
-        }
+        }*/
 
         return set;
     }
