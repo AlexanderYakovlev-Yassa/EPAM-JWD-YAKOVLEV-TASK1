@@ -1,31 +1,31 @@
 package by.epam.yakovlev.task.entity_logic.impl;
 
+import by.epam.yakovlev.task.entity.TariffExtension;
 import by.epam.yakovlev.task.entity_logic.EntityCollectionConverter;
 import by.epam.yakovlev.task.entity_logic.ExtensionConverter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Optional;
 
-public class EntityCollectionConverterImpl implements EntityCollectionConverter {
-    /*@Override
-    public <T> HashSet<T> convertToCollectionOf(ArrayList<String> list, T type) {
+public enum  EntityCollectionConverterImpl implements EntityCollectionConverter {
 
-        switch (type.getClass().getName()){
-            case "by.epam.yakovlev.task.entity.PhoneExtension": {
-
-            }
-        }
-        return null;
-    }
-
-    public static void main(String[] args) {
-        PhoneExtension p = new PhoneExtension();
-        System.out.println(p.getClass().getName());
-    }*/
+    INSTANCE;
 
     @Override
-    public <T> HashSet<T> convertToCollectionOf(ArrayList<String> list, ExtensionConverter converter) {
-        return null;
+    public HashSet<TariffExtension> convertToCollectionOf(ArrayList<String> list, ExtensionConverter converter) {
+
+        HashSet<TariffExtension> set = new HashSet<TariffExtension>();
+
+        if (list == null || converter == null){
+            return set;
+        }
+
+        for (String s : list){
+            set.add(converter.convertToTariffExtension(s));
+        }
+
+        return set;
     }
 }
 
