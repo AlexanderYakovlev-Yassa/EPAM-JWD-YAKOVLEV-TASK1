@@ -1,0 +1,7 @@
+base            5.0     phone=base          internet=base
+start           6.0     phone=base          internet=start
+easy-talk       10.0    phone=easy-talk     internet=start
+long-talk       12.0    phone=long-talk     internet=start
+internet        10.0    phone=non           internet=super
+smart           13.0    phone=base          internet=super
+elite           50.0    phone=elite         internet=ultra

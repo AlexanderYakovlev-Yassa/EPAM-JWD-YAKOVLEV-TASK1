@@ -11,21 +11,7 @@ import java.util.HashSet;
 
 public class RepositoryLogicImplFileTest {
 
-    private static RepositoryLogic repositoryLogic = Factory.INSTANCE.getRepositoryLogic();
 
-    @Test
-    public void getPhoneTariffPartSetTest() {
 
-        HashSet<PhoneExtension> phoneTariffPartsSet = null;
 
-        boolean flag = true;
-        try {
-            phoneTariffPartsSet = repositoryLogic.getPhoneTariffPartSet();
-        } catch (RepositoryException e) {
-            e.printStackTrace();
-            flag = false;
-        }
-
-        Assert.assertNotNull(phoneTariffPartsSet);
-    }
 }
