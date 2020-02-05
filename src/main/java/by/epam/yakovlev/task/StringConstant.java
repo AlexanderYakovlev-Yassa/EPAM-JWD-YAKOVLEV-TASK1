@@ -3,7 +3,8 @@ package by.epam.yakovlev.task;
 public enum StringConstant {
     NO_NAME("no_name"),
     EMPTY_STRING(""),
-    FIELD_DELIMITER("[\\s]+"),;
+    FIELD_DELIMITER("[\\s]+"),
+    PARAMETER_DELIMITER("=");
 
     String value;
 

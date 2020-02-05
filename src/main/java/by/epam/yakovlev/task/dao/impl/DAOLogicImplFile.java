@@ -19,7 +19,9 @@ import java.util.HashSet;
 import java.util.Optional;
 
 
-public class DAOLogicImplFile implements DAOLogic {
+public enum DAOLogicImplFile implements DAOLogic {
+
+INSTANCE;
 
     private final static FileUtil FILE_UTIL = FileUtil.INSTANCE;
     private final static Factory FACTORY = Factory.INSTANCE;
@@ -29,7 +31,7 @@ public class DAOLogicImplFile implements DAOLogic {
     private static final Logger LOGGER = Logger.getLogger(DAOLogicImplFile.class);
 
     @Override
-    public Optional<HashSet<TariffExtension>> getExtensionSet(TariffExtensionTypes type) throws DAOException {
+    public Optional<HashSet<TariffExtension>> getExtensionSet(TariffExtensionTypes type) {
 
         ArrayList<String> list = null;
 
@@ -38,12 +40,14 @@ public class DAOLogicImplFile implements DAOLogic {
         } catch (FileUtileException e) {
             LOGGER.info("Fail access to the data source which contains phone tariff extensions");
             LOGGER.info(e);
-            throw new DAOException("Fail access to the data source which contains phone tariff extensions", e);
+            return Optional.empty();
+            //throw new DAOException("Fail access to the data source which contains phone tariff extensions", e);
         }
 
         if (list == null) {
             LOGGER.info("No such type records");
-            throw new DAOException("No such type records");
+            return Optional.empty();
+            //throw new DAOException("No such type records");
         }
 
         HashSet<TariffExtension> phoneTariffExtensionSet =
@@ -53,6 +57,4 @@ public class DAOLogicImplFile implements DAOLogic {
 
         return res;
     }
-
-
 }

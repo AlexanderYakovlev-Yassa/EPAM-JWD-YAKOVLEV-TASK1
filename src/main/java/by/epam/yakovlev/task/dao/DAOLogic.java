@@ -10,6 +10,6 @@ import java.util.Optional;
 
 public interface DAOLogic {
 
-    Optional<HashSet<TariffExtension>> getExtensionSet(TariffExtensionTypes type) throws DAOException;
+    Optional<HashSet<TariffExtension>> getExtensionSet(TariffExtensionTypes type);
 
 }
