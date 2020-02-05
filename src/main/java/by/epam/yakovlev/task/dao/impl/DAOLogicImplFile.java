@@ -6,54 +6,46 @@ import by.epam.yakovlev.task.dao.DAOLogic;
 import by.epam.yakovlev.task.entity.TariffExtension;
 import by.epam.yakovlev.task.entity_logic.EntityCollectionConverter;
 
-import by.epam.yakovlev.task.entity_logic.ExtensionConverters;
-import by.epam.yakovlev.task.exception.DAOException;
+import by.epam.yakovlev.task.entity_logic.impl.EntityCollectionConverterImpl;
 import by.epam.yakovlev.task.exception.FileUtileException;
 import by.epam.yakovlev.task.util.FileUtil;
 import org.apache.log4j.Logger;
 
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Optional;
-
 
 public enum DAOLogicImplFile implements DAOLogic {
 
 INSTANCE;
 
     private final static FileUtil FILE_UTIL = FileUtil.INSTANCE;
-    private final static Factory FACTORY = Factory.INSTANCE;
-    private final static EntityCollectionConverter ENTITY_COLLECTION_CONVERTER =
-            FACTORY.getEntityCollectionConverter();
+    private final static Factory FACTORY = Factory.getInstance();
+    private final static EntityCollectionConverter ENTITY_COLLECTION_CONVERTER = EntityCollectionConverterImpl.INSTANCE;
 
     private static final Logger LOGGER = Logger.getLogger(DAOLogicImplFile.class);
 
     @Override
-    public Optional<HashSet<TariffExtension>> getExtensionSet(TariffExtensionTypes type) {
+    public HashSet<TariffExtension> getExtensionSet(TariffExtensionTypes type) {
 
         ArrayList<String> list = null;
+        HashSet<TariffExtension> res = new HashSet<TariffExtension>();
 
         try {
             list = FILE_UTIL.readFile(type.getSourceFile());
         } catch (FileUtileException e) {
             LOGGER.info("Fail access to the data source which contains phone tariff extensions");
             LOGGER.info(e);
-            return Optional.empty();
+            return res;
             //throw new DAOException("Fail access to the data source which contains phone tariff extensions", e);
         }
 
         if (list == null) {
             LOGGER.info("No such type records");
-            return Optional.empty();
+            return res;
             //throw new DAOException("No such type records");
         }
 
-        HashSet<TariffExtension> phoneTariffExtensionSet =
-                ENTITY_COLLECTION_CONVERTER.convertToCollectionOf(list, type.getExtensionConverter());
-
-        Optional<HashSet<TariffExtension>> res = Optional.of(phoneTariffExtensionSet);
+        res = ENTITY_COLLECTION_CONVERTER.convertToCollectionOf(list, type.getExtensionConverter());
 
         return res;
     }

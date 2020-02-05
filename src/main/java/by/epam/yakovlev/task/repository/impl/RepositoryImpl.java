@@ -8,25 +8,29 @@ import by.epam.yakovlev.task.entity.InternetExtension;
 import by.epam.yakovlev.task.entity.PhoneExtension;
 import by.epam.yakovlev.task.entity.Tariff;
 import by.epam.yakovlev.task.entity.TariffExtension;
+import by.epam.yakovlev.task.entity_logic.impl.ToTariffConverter;
 import by.epam.yakovlev.task.repository.Repository;
+import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Optional;
 
 public enum  RepositoryImpl implements Repository {
 
 INSTANCE;
 
-    private final DAOLogic DAO_LOGIC = DAOLogicImplFile.INSTANCE;
+    private Factory FACTORY = Factory.getInstance();
+    private DAOLogic DAO_LOGIC = DAOLogicImplFile.INSTANCE;
+    private Logger LOGGER = Logger.getLogger(RepositoryImpl.class);
 
     private HashSet<Tariff> tariff;
-    private Optional<HashSet<TariffExtension>> phoneExtensions;
-    private Optional<HashSet<TariffExtension>> internetExtensions;
+    private HashSet<TariffExtension> phoneExtensions;
+    private HashSet<TariffExtension> internetExtensions;
 
     RepositoryImpl(){
         tariff = new HashSet<Tariff>();
-        phoneExtensions = Optional.empty();
-        internetExtensions = Optional.empty();
+        phoneExtensions = new HashSet<TariffExtension>();
+        internetExtensions = new HashSet<TariffExtension>();
     }
 
     @Override
@@ -46,36 +50,62 @@ INSTANCE;
         this.tariff = tariff;
     }
 
-    public Optional<HashSet<TariffExtension>> getPhoneExtensions() {
+    public HashSet<TariffExtension> getPhoneExtensions() {
         return phoneExtensions;
     }
 
 
-    public Optional<HashSet<TariffExtension>> getInternetExtensions() {
+    public HashSet<TariffExtension> getInternetExtensions() {
         return internetExtensions;
     }
 
     @Override
-    public Optional<TariffExtension> findPhoneExtensionByName(String name) {
+    public TariffExtension findExtensionByTypeAndName(String type, String name) {
 
-        Optional<TariffExtension> res = Optional.empty();
+        if (type == null || name == null){
+            LOGGER.info("Can't find tariff extension by null type or name");
+            return null;
+        }
 
-        HashSet<TariffExtension> phoneExtensions = this.phoneExtensions.orElse(new HashSet<TariffExtension>());
+        TariffExtension res = null;
 
-        for (TariffExtension t : phoneExtensions){
-            if (((PhoneExtension)t).getPhoneExtensionName() == name){
-                return Optional.of(t);
+        switch (name.toUpperCase()){
+            case "PHONE" :{
+
+                for (TariffExtension t : phoneExtensions){
+                    if (((PhoneExtension)t).getPhoneExtensionName() == name){
+                        res = t;
+                    }
+                }
+                break;
+            }
+            case "INTERNET" :{
+                for (TariffExtension t : internetExtensions){
+                    if (((InternetExtension)t).getInternetExtensionName() == name){
+                        res = t;
+                    }
+                }
+                break;
+            }
+            default:{
+                LOGGER.info("There is no type [" + name.toUpperCase() + "].");
+                return null;
             }
         }
 
         return res;
     }
 
-    public void setPhoneExtensions(Optional<HashSet<TariffExtension>> phoneExtensions) {
+    @Override
+    public ArrayList<Tariff> getAllTariff() {
+        return null;
+    }
+
+    public void setPhoneExtensions(HashSet<TariffExtension> phoneExtensions) {
         this.phoneExtensions = phoneExtensions;
     }
 
-    public void setInternetExtensions(Optional<HashSet<TariffExtension>> internetExtensions) {
+    public void setInternetExtensions(HashSet<TariffExtension> internetExtensions) {
         this.internetExtensions = internetExtensions;
     }
 }

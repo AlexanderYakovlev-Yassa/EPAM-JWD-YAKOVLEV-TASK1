@@ -1,6 +1,7 @@
 package by.epam.yakovlev.task.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 
 public class Tariff extends AbstractTariff implements Serializable {
@@ -11,7 +12,7 @@ public class Tariff extends AbstractTariff implements Serializable {
         super();
     }
 
-    public Tariff(String tariffName, double monthlyFee, HashSet<TariffExtension> extensionSet) {
+    public Tariff(String tariffName, BigDecimal monthlyFee, HashSet<TariffExtension> extensionSet) {
         super(tariffName, monthlyFee);
         this.extensionSet = extensionSet;
     }
@@ -22,6 +23,15 @@ public class Tariff extends AbstractTariff implements Serializable {
 
     public void setExtensionSet(HashSet<TariffExtension> extensionSet) {
         this.extensionSet = extensionSet;
+    }
+
+    public boolean addExtension(TariffExtension extension){
+
+        if (extension != null){
+            return extensionSet.add(extension);
+        }
+
+        return false;
     }
 
     @Override
@@ -56,7 +66,7 @@ public class Tariff extends AbstractTariff implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder(getClass().getSimpleName() + "{");
+        StringBuilder sb = new StringBuilder(getClass().getSimpleName() + "{");
 
         for (TariffExtension ext : extensionSet){
             sb.append(ext.toString() + ", ");

@@ -21,12 +21,12 @@ public class RepositoryImplTest {
 
         HashSet<TariffExtension> t = new HashSet<TariffExtension>();
 
-        t = REPOSITORY.getPhoneExtensions().orElse(t);
+        t = REPOSITORY.getPhoneExtensions();
 
         Assert.assertTrue(t.size() > 0);
 
         t = new HashSet<TariffExtension>();
-        t = REPOSITORY.getInternetExtensions().orElse(t);
+        t = REPOSITORY.getInternetExtensions();
 
         Assert.assertTrue(t.size() > 0);
     }

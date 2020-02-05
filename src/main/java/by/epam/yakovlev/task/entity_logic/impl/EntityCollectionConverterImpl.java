@@ -6,7 +6,6 @@ import by.epam.yakovlev.task.entity_logic.ExtensionConverter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Optional;
 
 public enum  EntityCollectionConverterImpl implements EntityCollectionConverter {
 

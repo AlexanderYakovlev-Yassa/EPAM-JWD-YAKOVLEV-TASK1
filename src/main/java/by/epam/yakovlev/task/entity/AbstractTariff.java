@@ -3,19 +3,20 @@ package by.epam.yakovlev.task.entity;
 import by.epam.yakovlev.task.IntConstant;
 import by.epam.yakovlev.task.StringConstant;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public abstract class AbstractTariff {
 
     private String tariffName;
-    private double monthlyFee;
+    private BigDecimal monthlyFee;
 
     public AbstractTariff() {
         this.tariffName = StringConstant.NO_NAME.getValue();
-        this.monthlyFee = IntConstant.ZERO.getValue();
+        this.monthlyFee = BigDecimal.valueOf(0.0);
     }
 
-    public AbstractTariff(String tariffName, double monthlyFee) {
+    public AbstractTariff(String tariffName, BigDecimal monthlyFee) {
 
         this.tariffName = tariffName;
         this.monthlyFee = monthlyFee;
@@ -29,11 +30,11 @@ public abstract class AbstractTariff {
         this.tariffName = tariffName;
     }
 
-    public double getMonthlyFee() {
+    public BigDecimal getMonthlyFee() {
         return monthlyFee;
     }
 
-    public void setMonthlyFee(double monthlyFee) {
+    public void setMonthlyFee(BigDecimal monthlyFee) {
         this.monthlyFee = monthlyFee;
     }
 
@@ -51,8 +52,7 @@ public abstract class AbstractTariff {
 
         AbstractTariff that = (AbstractTariff) o;
 
-        return (int)(that.monthlyFee * IntConstant.MAX_CURRENCY_DIVIDER.getValue()) ==
-                (int)(monthlyFee * IntConstant.MAX_CURRENCY_DIVIDER.getValue()) &&
+        return monthlyFee.compareTo(that.monthlyFee) == 0 &&
                 tariffName.equals(that.tariffName);
     }
 
@@ -62,7 +62,7 @@ public abstract class AbstractTariff {
         int res = 7;
 
         res = res * prime + (tariffName == null ? 0 : tariffName.hashCode());
-        res = res * prime + (int)(monthlyFee * IntConstant.MAX_CURRENCY_DIVIDER.getValue());
+        res = res * prime + (monthlyFee == null ? 0 : monthlyFee.hashCode());
 
         return res;
     }
