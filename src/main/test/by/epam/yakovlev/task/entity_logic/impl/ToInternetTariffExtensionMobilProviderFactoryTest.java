@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
-public class ToInternetTariffExtensionApplicationEntityFactoryTest {
+public class ToInternetTariffExtensionMobilProviderFactoryTest {
 
     private static final ConverterUtil UTIL = ConverterUtil.getInstance();
     private static final ToInternetTariffExtensionConverter CONVERTER = new ToInternetTariffExtensionConverter();

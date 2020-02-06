@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 public class FileUtilTest {
 
-    private static FileUtil util = FileUtil.INSTANCE;
+    private static FileUtil util = new FileUtil();
     private static File file = TestDataFiles.PHONE_PART.getFile();
 
     @Test

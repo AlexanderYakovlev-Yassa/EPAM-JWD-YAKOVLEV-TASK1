@@ -1,0 +1,10 @@
+by\epam\yakovlev\task\repository\RepositoryTablesEnum.class
+by\epam\yakovlev\task\dao\DAOFactory.class
+by\epam\yakovlev\task\entity\ApplicationCompatibleType.class
+by\epam\yakovlev\task\entity_logic\ApplicationEntityFactory.class
+by\epam\yakovlev\task\entity_logic\impl\ApplicationEntityFactoryImpl$1.class
+by\epam\yakovlev\task\dao\DAOTablesEnum.class
+by\epam\yakovlev\task\entity_logic\impl\ApplicationEntityFactoryImpl.class
+by\epam\yakovlev\task\repository\impl\TariffTableImpl.class
+by\epam\yakovlev\task\repository\RepositoryTable.class
+by\epam\yakovlev\task\entity\EntityTypeEnum.class

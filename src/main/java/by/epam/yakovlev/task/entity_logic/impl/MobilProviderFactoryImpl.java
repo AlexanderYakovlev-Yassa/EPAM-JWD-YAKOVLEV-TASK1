@@ -2,12 +2,12 @@ package by.epam.yakovlev.task.entity_logic.impl;
 
 import by.epam.yakovlev.task.dao.impl.DAOLogicImplFile;
 import by.epam.yakovlev.task.entity.*;
-import by.epam.yakovlev.task.entity_logic.ApplicationEntityFactory;
+import by.epam.yakovlev.task.entity_logic.MobilProviderFactory;
 import org.apache.log4j.Logger;
 
 import java.util.jar.Attributes;
 
-public class ApplicationEntityFactoryImpl implements ApplicationEntityFactory {
+public class MobilProviderFactoryImpl implements MobilProviderFactory {
 
     private static final ConverterUtil UTIL = ConverterUtil.getInstance();
     private static Logger LOGGER = Logger.getLogger(DAOLogicImplFile.class);
@@ -26,13 +26,13 @@ public class ApplicationEntityFactoryImpl implements ApplicationEntityFactory {
     private static final String TRAFFIC_FEE = "traffic-fee";
 
     @Override
-    public ApplicationCompatibleType applicationEntityFactory(String string, EntityTypeEnum type) {
+    public MobilProviderCompatibleType applicationEntityFactory(String string, EntityTypeEnum type) {
 
         if (string == null || type == null){
             return null;
         }
 
-        ApplicationCompatibleType res = null;
+        MobilProviderCompatibleType res = null;
         Attributes typeAttributes = UTIL.ParseStringToAttributes(string);
 
         switch (type){

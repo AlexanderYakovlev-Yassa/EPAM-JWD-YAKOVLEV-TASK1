@@ -1,6 +1,5 @@
 package by.epam.yakovlev.task.entity;
 
-import by.epam.yakovlev.task.IntConstant;
 import by.epam.yakovlev.task.StringConstant;
 
 import java.io.Serializable;
@@ -9,7 +8,7 @@ import java.math.BigDecimal;
 /**
  * Represents the part of a tariff that responsible for internet
  */
-public class InternetExtension implements Serializable, TariffExtension, ApplicationCompatibleType{
+public class InternetExtension implements Serializable, TariffExtension, MobilProviderCompatibleType {
 
     private String internetExtensionName;
 

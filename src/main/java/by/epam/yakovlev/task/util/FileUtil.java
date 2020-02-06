@@ -6,9 +6,16 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public enum  FileUtil {
+public class  FileUtil {
 
-    INSTANCE;
+    private static final FileUtil FILE_UTIL = new FileUtil();
+
+    public FileUtil() {
+    }
+
+    public static FileUtil getFileUtil() {
+        return FILE_UTIL;
+    }
 
     public ArrayList<String> readFile(File file) throws FileUtileException {
 

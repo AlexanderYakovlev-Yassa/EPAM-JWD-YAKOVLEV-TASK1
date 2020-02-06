@@ -6,16 +6,16 @@ public class DAOFactory {
 
     private static final DAOFactory INSTANCE = new DAOFactory();
 
-    private DAOLogic daoLogic = new DAOLogicImplFile();
+    private final DAOLogic DAO_LOGIC = new DAOLogicImplFile();
 
-    private DAOFactory() {
+    public DAOFactory() {
     }
 
-    public static DAOFactory getInstance() {
+    public static DAOFactory getINSTANCE() {
         return INSTANCE;
     }
 
-    public DAOLogic getDaoLogic() {
-        return daoLogic;
+    public DAOLogic getDAO_LOGIC() {
+        return DAO_LOGIC;
     }
 }

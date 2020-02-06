@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.jar.Attributes;
 
-public class ApplicationEntityFactoryUtilTest {
+public class MobilProviderFactoryUtilTest {
 
     private static final ConverterUtil UTIL = ConverterUtil.getInstance();
 

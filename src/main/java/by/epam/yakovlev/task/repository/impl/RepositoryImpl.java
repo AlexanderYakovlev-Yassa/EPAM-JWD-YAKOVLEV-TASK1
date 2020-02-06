@@ -1,10 +1,5 @@
 package by.epam.yakovlev.task.repository.impl;
 
-import by.epam.yakovlev.task.Factory;
-import by.epam.yakovlev.task.TariffExtensionTypes;
-import by.epam.yakovlev.task.dao.DAOFactory;
-import by.epam.yakovlev.task.dao.DAOLogic;
-import by.epam.yakovlev.task.dao.impl.DAOLogicImplFile;
 import by.epam.yakovlev.task.entity.InternetExtension;
 import by.epam.yakovlev.task.entity.PhoneExtension;
 import by.epam.yakovlev.task.entity.Tariff;
@@ -18,30 +13,14 @@ import java.util.HashSet;
 
 public class  RepositoryImpl implements Repository {
 
-    private static final RepositoryImpl INSTANCE = new RepositoryImpl();
-
-    private Factory FACTORY = Factory.getInstance();
-    //private DAOLogic DAO_LOGIC = DAOFactory.getInstance().getDaoLogic();
     private Logger LOGGER = Logger.getLogger(RepositoryImpl.class);
 
     private HashSet<Tariff> tariff;
     private HashSet<TariffExtension> phoneExtensions;
     private HashSet<TariffExtension> internetExtensions;
 
-    private RepositoryImpl(){
-    }
-
-    public static RepositoryImpl getInstance() {
-        return INSTANCE;
-    }
-
     @Override
     public void initialise() {
-
-        //setPhoneExtensions(DAO_LOGIC.getExtensionSet(TariffExtensionTypes.PHONE));
-        //setInternetExtensions(DAO_LOGIC.getExtensionSet(TariffExtensionTypes.INTERNET));
-
-
     }
 
     public HashSet<Tariff> getTariff() {

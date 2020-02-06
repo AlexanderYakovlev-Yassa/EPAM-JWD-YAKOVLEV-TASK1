@@ -1,12 +1,11 @@
 package by.epam.yakovlev.task.entity;
 
-import by.epam.yakovlev.task.IntConstant;
 import by.epam.yakovlev.task.StringConstant;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class PhoneExtension implements Serializable, TariffExtension, ApplicationCompatibleType{
+public class PhoneExtension implements Serializable, TariffExtension, MobilProviderCompatibleType {
 
     private String phoneExtensionName;
     private BigDecimal incomeCallFee;
@@ -113,9 +112,5 @@ public class PhoneExtension implements Serializable, TariffExtension, Applicatio
         sb.append(", anyProviderIncludedMinutes=").append(anyProviderIncludedMinutes);
         sb.append('}');
         return sb.toString();
-    }
-
-    private int normalizeCost(double cost) {
-        return (int) (cost * IntConstant.MAX_CURRENCY_DIVIDER.getValue());
     }
 }
