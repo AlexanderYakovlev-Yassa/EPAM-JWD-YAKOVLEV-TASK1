@@ -17,4 +17,9 @@ public interface Repository {
     TariffExtension findExtensionByTypeAndName(String type, String name);
 
     ArrayList<Tariff> getAllTariff();
+
+    <T> ArrayList<T> getAllRecordsList(RepositoryTablesEnum table);
+
+    boolean fillTable(RepositoryTablesEnum table);
+
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashSet;
 
-public class Tariff extends AbstractTariff implements Serializable {
+public class Tariff extends AbstractTariff implements Serializable, ApplicationCompatibleType {
 
     private HashSet<TariffExtension> extensionSet;
 
