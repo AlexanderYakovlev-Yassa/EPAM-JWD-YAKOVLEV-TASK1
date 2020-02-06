@@ -4,7 +4,7 @@ public enum StringConstant {
     NO_NAME("no_name"),
     EMPTY_STRING(""),
     FIELD_DELIMITER("[\\s]+"),
-    PARAMETER_DELIMITER("=");
+    ATTRIBUTE_DELIMITER("=");
 
     String value;
 

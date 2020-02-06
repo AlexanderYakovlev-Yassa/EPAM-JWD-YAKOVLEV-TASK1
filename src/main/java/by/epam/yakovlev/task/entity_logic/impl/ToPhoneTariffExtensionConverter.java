@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 public class ToPhoneTariffExtensionConverter implements ExtensionConverter {
 
-    private final static ConverterUtil UTIL = ConverterUtil.INSTANCE;
+    private final static ConverterUtil UTIL = ConverterUtil.getINSTANCE();
 
     @Override
     public TariffExtension convertToTariffExtension(String string) {

@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 public class ToInternetTariffExtensionConverterTest {
 
-    private static final ConverterUtil UTIL = ConverterUtil.INSTANCE;
+    private static final ConverterUtil UTIL = ConverterUtil.getINSTANCE();
     private static final ToInternetTariffExtensionConverter CONVERTER = new ToInternetTariffExtensionConverter();
 
 

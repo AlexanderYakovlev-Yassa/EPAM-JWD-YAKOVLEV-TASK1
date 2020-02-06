@@ -10,6 +10,7 @@ import by.epam.yakovlev.task.entity.Tariff;
 import by.epam.yakovlev.task.entity.TariffExtension;
 import by.epam.yakovlev.task.entity_logic.impl.ToTariffConverter;
 import by.epam.yakovlev.task.repository.Repository;
+import by.epam.yakovlev.task.repository.RepositoryTablesEnum;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -99,6 +100,16 @@ INSTANCE;
     @Override
     public ArrayList<Tariff> getAllTariff() {
         return null;
+    }
+
+    @Override
+    public <T> ArrayList<T> getAllRecordsList(RepositoryTablesEnum table) {
+        return null;
+    }
+
+    @Override
+    public boolean fillTable(RepositoryTablesEnum table) {
+        return false;
     }
 
     public void setPhoneExtensions(HashSet<TariffExtension> phoneExtensions) {

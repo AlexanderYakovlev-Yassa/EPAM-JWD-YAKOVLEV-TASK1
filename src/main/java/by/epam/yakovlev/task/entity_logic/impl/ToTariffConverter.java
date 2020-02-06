@@ -13,7 +13,7 @@ public class ToTariffConverter {
 
     private static final Logger LOGGER = Logger.getLogger(ToTariffConverter.class);
 
-    private final static ConverterUtil UTIL = ConverterUtil.INSTANCE;
+    private final static ConverterUtil UTIL = ConverterUtil.getINSTANCE();
     private final static Factory FACTORY = Factory.getInstance();
     private final static Repository REPOSITORY = FACTORY.getRepository();
 
@@ -51,7 +51,7 @@ public class ToTariffConverter {
 
         for (int i = 2; i < fields.length; i++) {
 
-            String[] param = fields[i].split(StringConstant.PARAMETER_DELIMITER.getValue());
+            String[] param = fields[i].split(StringConstant.ATTRIBUTE_DELIMITER.getValue());
             typeName = param[0];
             extensionName = param[1];
 

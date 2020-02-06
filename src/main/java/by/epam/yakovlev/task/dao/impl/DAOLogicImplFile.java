@@ -31,7 +31,7 @@ public enum DAOLogicImplFile implements DAOLogic {
     private final static EntityCollectionConverter ENTITY_COLLECTION_CONVERTER = EntityCollectionConverterImpl.INSTANCE;
     private final static Converter CONVERTER = FACTORY.getConverter();
 
-    private static final Logger LOGGER = Logger.getLogger(DAOLogicImplFile.class);
+    private static Logger LOGGER = Logger.getLogger(DAOLogicImplFile.class);
 
     @Override
     public HashSet<TariffExtension> getExtensionSet(TariffExtensionTypes type) {
@@ -105,7 +105,7 @@ public enum DAOLogicImplFile implements DAOLogic {
                 res.add(temporaryEntity);
             }
         }
-        
+
         return res;
     }
 }
