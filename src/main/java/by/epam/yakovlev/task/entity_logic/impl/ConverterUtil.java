@@ -15,11 +15,15 @@ public class   ConverterUtil {
 
     private ConverterUtil(){}
 
-    public static ConverterUtil getINSTANCE() {
+    public static ConverterUtil getInstance() {
         return INSTANCE;
     }
 
     public Double stringToPositiveDouble(String string) {
+
+        if(string == null){
+            return null;
+        }
 
         Double d;
 
@@ -54,6 +58,10 @@ public class   ConverterUtil {
     }
 
     public BigDecimal stringToPositiveBigDecimal(String string) {
+
+        if (string == null) {
+            return null;
+        }
 
         BigDecimal b = null;
 

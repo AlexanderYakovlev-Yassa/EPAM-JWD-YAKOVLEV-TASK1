@@ -25,6 +25,22 @@ public class Tariff extends AbstractTariff implements Serializable, ApplicationC
         this.extensionSet = extensionSet;
     }
 
+    public String getTariffName(){
+        return super.tariffName;
+    }
+
+    public void setTariffName(String name){
+        super.tariffName = name;
+    }
+
+    public BigDecimal getMonthlyFee(){
+        return super.monthlyFee;
+    }
+
+    public void setMonthlyFee(BigDecimal monthlyFee){
+        super.monthlyFee = monthlyFee;
+    }
+
     public boolean addExtension(TariffExtension extension){
 
         if (extension != null){

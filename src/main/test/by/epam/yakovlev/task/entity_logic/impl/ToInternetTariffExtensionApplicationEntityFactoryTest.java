@@ -1,27 +1,28 @@
 package by.epam.yakovlev.task.entity_logic.impl;
 
-import by.epam.yakovlev.task.entity.PhoneExtension;
+import by.epam.yakovlev.task.entity.InternetExtension;
 import by.epam.yakovlev.task.entity.TariffExtension;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
-public class ToPhoneTariffExtensionConverterTest {
+public class ToInternetTariffExtensionApplicationEntityFactoryTest {
 
-    private static final ConverterUtil UTIL = ConverterUtil.getINSTANCE();
-    private static final ToPhoneTariffExtensionConverter CONVERTER = new ToPhoneTariffExtensionConverter();
+    private static final ConverterUtil UTIL = ConverterUtil.getInstance();
+    private static final ToInternetTariffExtensionConverter CONVERTER = new ToInternetTariffExtensionConverter();
+
 
     @Test
     public void convertToTariffExtensionPositiveTest() {
 
-        String string = "basic        0   0.1     100       50";
+        String string = "basic        0.1   0.5     2       0.003";
 
-        PhoneExtension excepted = new PhoneExtension("basic",
-                BigDecimal.valueOf(0.0) ,
-                BigDecimal.valueOf(0.1),
-                100,
-                50);
+        InternetExtension excepted = new InternetExtension("basic",
+                0.1 ,
+                0.5,
+                2,
+                BigDecimal.valueOf(0.003));
 
         TariffExtension actual = CONVERTER.convertToTariffExtension(string);
 

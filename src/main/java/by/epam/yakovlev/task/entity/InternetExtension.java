@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 /**
  * Represents the part of a tariff that responsible for internet
  */
-public class InternetExtension implements Serializable, TariffExtension{
+public class InternetExtension implements Serializable, TariffExtension, ApplicationCompatibleType{
 
     private String internetExtensionName;
 
@@ -106,7 +106,7 @@ public class InternetExtension implements Serializable, TariffExtension{
                 includedTraffic == that.includedTraffic &&
                 trafficLimit == that.trafficLimit &&
                 trafficSpeedLimit == that.trafficSpeedLimit &&
-                trafficFee.equals(that.trafficFee);
+                trafficFee.compareTo(that.trafficFee) == 0;
     }
 
     @Override

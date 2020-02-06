@@ -5,16 +5,14 @@ import by.epam.yakovlev.task.TariffExtensionTypes;
 import by.epam.yakovlev.task.dao.DAOLogic;
 import by.epam.yakovlev.task.dao.DAOTablesEnum;
 import by.epam.yakovlev.task.entity.ApplicationCompatibleType;
-import by.epam.yakovlev.task.entity.Tariff;
+import by.epam.yakovlev.task.entity.EntityTypeEnum;
 import by.epam.yakovlev.task.entity.TariffExtension;
-import by.epam.yakovlev.task.entity_logic.Converter;
+import by.epam.yakovlev.task.entity_logic.ApplicationEntityFactory;
 import by.epam.yakovlev.task.entity_logic.EntityCollectionConverter;
 
 import by.epam.yakovlev.task.entity_logic.impl.EntityCollectionConverterImpl;
 import by.epam.yakovlev.task.exception.DAOException;
 import by.epam.yakovlev.task.exception.FileUtileException;
-import by.epam.yakovlev.task.repository.RepositoryTable;
-import by.epam.yakovlev.task.repository.RepositoryTablesEnum;
 import by.epam.yakovlev.task.util.FileUtil;
 import org.apache.log4j.Logger;
 
@@ -22,14 +20,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public enum DAOLogicImplFile implements DAOLogic {
+public class DAOLogicImplFile implements DAOLogic {
 
-    INSTANCE;
+    //INSTANCE;
 
     private final static FileUtil FILE_UTIL = FileUtil.INSTANCE;
     private final static Factory FACTORY = Factory.getInstance();
     private final static EntityCollectionConverter ENTITY_COLLECTION_CONVERTER = EntityCollectionConverterImpl.INSTANCE;
-    private final static Converter CONVERTER = FACTORY.getConverter();
+    private final static ApplicationEntityFactory APPLICATION_ENTITY_FACTORY = FACTORY.getApplicationEntityFactory();
 
     private static Logger LOGGER = Logger.getLogger(DAOLogicImplFile.class);
 
@@ -81,9 +79,9 @@ public enum DAOLogicImplFile implements DAOLogic {
         }
 
         ApplicationCompatibleType temporaryEntity = null;
-        RepositoryTablesEnum type = null;
+        EntityTypeEnum type = null;
 
-        for (RepositoryTablesEnum e : RepositoryTablesEnum.values()) {
+        for (EntityTypeEnum e : EntityTypeEnum.values()) {
 
             if (e.name().equals(table.name())) {
                 type = e;
@@ -99,7 +97,7 @@ public enum DAOLogicImplFile implements DAOLogic {
         for (String s : stringRecordList) {
 
             temporaryEntity = null;
-            temporaryEntity = CONVERTER.ConvertFromStringToEntity(s, type);
+            temporaryEntity = APPLICATION_ENTITY_FACTORY.applicationEntityFactory(s, type);
 
             if (temporaryEntity != null){
                 res.add(temporaryEntity);

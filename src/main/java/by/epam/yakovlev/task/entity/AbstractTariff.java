@@ -8,8 +8,8 @@ import java.util.Objects;
 
 public abstract class AbstractTariff {
 
-    private String tariffName;
-    private BigDecimal monthlyFee;
+    protected String tariffName;
+    protected BigDecimal monthlyFee;
 
     public AbstractTariff() {
         this.tariffName = StringConstant.NO_NAME.getValue();
@@ -19,22 +19,6 @@ public abstract class AbstractTariff {
     public AbstractTariff(String tariffName, BigDecimal monthlyFee) {
 
         this.tariffName = tariffName;
-        this.monthlyFee = monthlyFee;
-    }
-
-    public String getTariffName() {
-        return tariffName;
-    }
-
-    public void setTariffName(String tariffName) {
-        this.tariffName = tariffName;
-    }
-
-    public BigDecimal getMonthlyFee() {
-        return monthlyFee;
-    }
-
-    public void setMonthlyFee(BigDecimal monthlyFee) {
         this.monthlyFee = monthlyFee;
     }
 

@@ -6,7 +6,7 @@ import by.epam.yakovlev.task.StringConstant;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class PhoneExtension implements Serializable, TariffExtension{
+public class PhoneExtension implements Serializable, TariffExtension, ApplicationCompatibleType{
 
     private String phoneExtensionName;
     private BigDecimal incomeCallFee;
@@ -83,8 +83,8 @@ public class PhoneExtension implements Serializable, TariffExtension{
         }
         PhoneExtension that = (PhoneExtension) o;
         return phoneExtensionName.equals(that.phoneExtensionName) &&
-                incomeCallFee.equals(that.incomeCallFee) &&
-                outcomeCallFee.equals(that.outcomeCallFee) &&
+                incomeCallFee.compareTo(that.incomeCallFee) == 0 &&
+                outcomeCallFee.compareTo(that.outcomeCallFee) == 0 &&
                 this.innerProviderIncludedMinutes == that.innerProviderIncludedMinutes &&
                 this.anyProviderIncludedMinutes == that.anyProviderIncludedMinutes;
     }

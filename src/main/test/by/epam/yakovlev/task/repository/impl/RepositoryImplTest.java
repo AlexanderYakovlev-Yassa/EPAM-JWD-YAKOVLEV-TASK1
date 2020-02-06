@@ -1,5 +1,6 @@
 package by.epam.yakovlev.task.repository.impl;
 
+import by.epam.yakovlev.task.Factory;
 import by.epam.yakovlev.task.entity.PhoneExtension;
 import by.epam.yakovlev.task.entity.TariffExtension;
 import by.epam.yakovlev.task.repository.Repository;
@@ -12,7 +13,7 @@ import static org.junit.Assert.*;
 
 public class RepositoryImplTest {
 
-    private static final Repository REPOSITORY = RepositoryImpl.INSTANCE;
+    private static final Repository REPOSITORY = Factory.getInstance().getRepository();
 
     @Test
     public void initialiseTest() {

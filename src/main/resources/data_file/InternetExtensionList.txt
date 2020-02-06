@@ -1,4 +1,4 @@
-basic        0.1   0.5     2       0.003
-start        0.2   1.0     2       0.003
-super        2.0   100.0   20      0.004
-ultra        5.0   100.0   20      0.004
+name=basic        included-traffic=0.1   traffic-limit=0.5     traffic-speed-limit=2       traffic-fee=0.003
+name=start        included-traffic=0.2   traffic-limit=1.0     traffic-speed-limit=2       traffic-fee=0.003
+name=super        included-traffic=2.0   traffic-limit=100.0   traffic-speed-limit=20      traffic-fee=0.004
+name=ultra        included-traffic=5.0   traffic-limit=100.0   traffic-speed-limit=20      traffic-fee=0.004
