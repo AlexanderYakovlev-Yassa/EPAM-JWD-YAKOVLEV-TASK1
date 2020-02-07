@@ -1,21 +1,20 @@
 package by.epam.yakovlev.task.entity_logic.impl;
 
 import by.epam.yakovlev.task.StringConstant;
-import by.epam.yakovlev.task.dao.impl.DAOLogicImplFile;
 import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.util.jar.Attributes;
 
-public class   ConverterUtil {
+public class EntityUtil {
 
-    private static final ConverterUtil INSTANCE = new ConverterUtil();
+    private static final EntityUtil INSTANCE = new EntityUtil();
 
-    private static Logger LOGGER = Logger.getLogger(ConverterUtil.class);
+    private static Logger LOGGER = Logger.getLogger(EntityUtil.class);
 
-    private ConverterUtil(){}
+    private EntityUtil(){}
 
-    public static ConverterUtil getInstance() {
+    public static EntityUtil getInstance() {
         return INSTANCE;
     }
 

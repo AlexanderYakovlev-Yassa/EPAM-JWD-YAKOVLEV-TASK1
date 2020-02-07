@@ -1,25 +1,25 @@
 package by.epam.yakovlev.task.repository;
 
+import by.epam.yakovlev.task.entity.MobilProviderCompatibleType;
 import by.epam.yakovlev.task.entity.Tariff;
 import by.epam.yakovlev.task.entity.TariffExtension;
+import by.epam.yakovlev.task.exception.RepositoryException;
+import by.epam.yakovlev.task.repository.impl.TariffExtensionTables;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 
 public interface Repository {
 
+    //TariffExtension getExtension(TariffExtensionTables tables, String name);
+    //HashSet<TariffExtension> getInternetExtensionSet();
 
-    void initialise();
+    //TariffExtension findExtensionByTypeAndName(String type, String name);
 
-    HashSet<TariffExtension> getPhoneExtensions();
-    HashSet<TariffExtension> getInternetExtensions();
+    //ArrayList<Tariff> getAllTariff();
 
-    TariffExtension findExtensionByTypeAndName(String type, String name);
+    ArrayList<MobilProviderCompatibleType> getResultList(Specification specification);
 
-    ArrayList<Tariff> getAllTariff();
-
-    <T> ArrayList<T> getAllRecordsList(RepositoryTablesEnum table);
-
-    boolean fillTable(RepositoryTablesEnum table);
+    boolean initialise() throws RepositoryException;
 
 }

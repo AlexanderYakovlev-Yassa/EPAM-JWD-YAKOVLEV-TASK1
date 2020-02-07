@@ -7,7 +7,7 @@ import java.util.jar.Attributes;
 
 public class MobilProviderFactoryUtilTest {
 
-    private static final ConverterUtil UTIL = ConverterUtil.getInstance();
+    private static final EntityUtil UTIL = EntityUtil.getInstance();
 
     @Test
     public void parseStringToAttributesPositiveTest() {

@@ -3,14 +3,18 @@ package by.epam.yakovlev.task.entity_logic.impl;
 import by.epam.yakovlev.task.dao.impl.DAOLogicImplFile;
 import by.epam.yakovlev.task.entity.*;
 import by.epam.yakovlev.task.entity_logic.MobilProviderFactory;
+import by.epam.yakovlev.task.repository.Repository;
+import by.epam.yakovlev.task.repository.RepositoryFactory;
+import by.epam.yakovlev.task.repository.impl.TariffExtensionTables;
 import org.apache.log4j.Logger;
 
 import java.util.jar.Attributes;
 
 public class MobilProviderFactoryImpl implements MobilProviderFactory {
 
-    private static final ConverterUtil UTIL = ConverterUtil.getInstance();
+    private static final EntityUtil UTIL = EntityUtil.getInstance();
     private static Logger LOGGER = Logger.getLogger(DAOLogicImplFile.class);
+    //private static final  Repository REPOSITORY = RepositoryFactory.getINSTANCE().getREPOSITORY();
 
     private static final String NAME = "name";
     private static final String MONTHLY_FEE = "monthly-fee";
@@ -43,7 +47,17 @@ public class MobilProviderFactoryImpl implements MobilProviderFactory {
 
                 tariff.setTariffName(typeAttributes.getValue(NAME));
                 tariff.setMonthlyFee(UTIL.stringToPositiveBigDecimal(typeAttributes.getValue(MONTHLY_FEE)));
-                //HashSet<TariffExtension> tariffExtensions = new HashSet<>();
+
+                /*if  (typeAttributes.containsKey(TariffExtensionTables.PHONE.name())){
+                    tariff.getExtensionSet().add(REPOSITORY.getExtension(TariffExtensionTables.PHONE,
+                            typeAttributes.getValue(TariffExtensionTables.PHONE.name())));
+                }
+
+                if  (typeAttributes.containsKey(TariffExtensionTables.INTERNET.name())){
+                    tariff.getExtensionSet().add(REPOSITORY.getExtension(TariffExtensionTables.INTERNET,
+                            typeAttributes.getValue(TariffExtensionTables.INTERNET.name())));
+                }*/
+
                 break;
             }
             case TARIFF_PHONE_EXTENSION: {

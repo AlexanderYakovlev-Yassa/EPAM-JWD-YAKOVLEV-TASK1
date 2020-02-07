@@ -1,34 +1,41 @@
 package by.epam.yakovlev.task.repository.impl;
 
 import by.epam.yakovlev.task.Factory;
-import by.epam.yakovlev.task.entity.PhoneExtension;
 import by.epam.yakovlev.task.entity.TariffExtension;
+import by.epam.yakovlev.task.exception.RepositoryException;
 import by.epam.yakovlev.task.repository.Repository;
+import by.epam.yakovlev.task.repository.RepositoryFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashSet;
 
-import static org.junit.Assert.*;
-
 public class RepositoryImplTest {
 
-    private static final Repository REPOSITORY = Factory.getInstance().getRepository();
+    private static final Repository REPOSITORY = RepositoryFactory.getINSTANCE().getREPOSITORY();
 
     @Test
     public void initialiseTest() {
 
-        REPOSITORY.initialise();
+        boolean actual = false;
 
-        HashSet<TariffExtension> t = new HashSet<TariffExtension>();
+        try {
+            actual = REPOSITORY.initialise();
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+        }
 
-        t = REPOSITORY.getPhoneExtensions();
+        Assert.assertTrue(actual);
+
+        /*HashSet<TariffExtension> t = new HashSet<TariffExtension>();
+
+        t = REP_IMPL.getExtension();
 
         Assert.assertTrue(t.size() > 0);
 
-        t = new HashSet<TariffExtension>();
-        t = REPOSITORY.getInternetExtensions();
+        t = new HashSet<>();
+        t = REPOSITORY.getInternetExtensionSet();
 
-        Assert.assertTrue(t.size() > 0);
+        Assert.assertTrue(t.size() > 0);*/
     }
 }
