@@ -1,3 +1,0 @@
-name=base        income-call-fee=0		outcome-call-fee=0.1     inner-provider-included-minutes=0       any-provider-included-minutes=0
-name=long_talk   income-call-fee=0		outcome-call-fee=0.1     inner-provider-included-minutes=200     any-provider-included-minutes=100
-name=elite       income-call-fee=0		outcome-call-fee=0.2     inner-provider-included-minutes=1000    any-provider-included-minutes=1000

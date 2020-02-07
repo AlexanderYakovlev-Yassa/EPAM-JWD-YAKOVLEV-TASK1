@@ -1,7 +1,0 @@
-name=base            monthly-fee=5.0     phone=base          internet=base
-name=start           monthly-fee=6.0     phone=base          internet=start
-name=easy-talk       monthly-fee=10.0    phone=easy-talk     internet=start
-name=long-talk       monthly-fee=12.0    phone=long-talk     internet=start
-name=internet        monthly-fee=10.0    phone=non           internet=super
-name=smart           monthly-fee=13.0    phone=base          internet=super
-name=elite           monthly-fee=50.0    phone=elite         internet=ultra
