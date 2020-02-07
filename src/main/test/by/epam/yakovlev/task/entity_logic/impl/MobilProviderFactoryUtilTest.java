@@ -20,26 +20,26 @@ public class MobilProviderFactoryUtilTest {
 
         String excepted = "Alexander";
         String actual = attributes.getValue("name");
-        Assert.assertTrue(actual.equals(excepted));
+        Assert.assertEquals(actual, excepted);
 
         excepted = "44";
         actual = attributes.getValue("age");
-        Assert.assertTrue(actual.equals(excepted));
+        Assert.assertEquals(actual, excepted);
 
         excepted = "blue";
         actual = attributes.getValue("eyes-color");
-        Assert.assertTrue(actual.equals(excepted));
+        Assert.assertEquals(actual, excepted);
 
         excepted = "brown";
         actual = attributes.getValue("hair-color");
-        Assert.assertTrue(actual.equals(excepted));
+        Assert.assertEquals(actual, excepted);
 
         excepted = "excellent";
         actual = attributes.getValue("health-status");
-        Assert.assertTrue(actual.equals(excepted));
+        Assert.assertEquals(actual, excepted);
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test
     public void parseStringToAttributesNegativeTest() {
 
         String testString = "name=Alexander ag=44 eyes-color=blue hair-color=brown health-status=excellent";
@@ -49,12 +49,12 @@ public class MobilProviderFactoryUtilTest {
         String excepted = "44";
         String actual = attributes.getValue("age");
 
-        Assert.assertTrue(actual.equals(excepted));
+        Assert.assertNotEquals(actual, excepted);
 
 
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test
     public void parseStringToAttributesNegative1Test() {
 
         String testString = "name=Alexander age44 eyes-color=blue hair-color=brown health-status=excellent";
@@ -64,7 +64,7 @@ public class MobilProviderFactoryUtilTest {
         String excepted = "44";
         String actual = attributes.getValue("age");
 
-        Assert.assertTrue(actual.equals(excepted));
+        Assert.assertNotEquals(actual, excepted);
 
 
     }

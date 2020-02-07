@@ -1,10 +1,8 @@
 package by.epam.yakovlev.task.entity;
 
-import by.epam.yakovlev.task.IntConstant;
 import by.epam.yakovlev.task.StringConstant;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 public abstract class AbstractTariff {
 

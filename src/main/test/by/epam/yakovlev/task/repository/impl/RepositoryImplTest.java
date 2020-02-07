@@ -27,15 +27,5 @@ public class RepositoryImplTest {
 
         Assert.assertTrue(actual);
 
-        /*HashSet<TariffExtension> t = new HashSet<TariffExtension>();
-
-        t = REP_IMPL.getExtension();
-
-        Assert.assertTrue(t.size() > 0);
-
-        t = new HashSet<>();
-        t = REPOSITORY.getInternetExtensionSet();
-
-        Assert.assertTrue(t.size() > 0);*/
     }
 }

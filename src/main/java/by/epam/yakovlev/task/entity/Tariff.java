@@ -62,9 +62,20 @@ public class Tariff extends AbstractTariff implements Serializable, MobilProvide
             return false;
         }
 
-        Tariff tariff = (Tariff) o;
+        Tariff that = (Tariff) o;
 
-        return extensionSet.equals(tariff.extensionSet);
+        if (this.extensionSet.size() != that.extensionSet.size()){
+            return false;
+        }
+
+        /*for (TariffExtension t : extensionSet) {
+            System.out.println(" this " + t.toString());
+        }
+        for (TariffExtension t : that.extensionSet) {
+            System.out.println(" that " + t.toString());
+        }*/
+
+        return extensionSet.equals(that.extensionSet) ;
     }
 
     @Override
@@ -73,8 +84,13 @@ public class Tariff extends AbstractTariff implements Serializable, MobilProvide
         int prime = 31;
         int res = 7;
 
-        for (TariffExtension ext : extensionSet){
-            res = res * prime + ext.hashCode();
+        res = res * prime + (tariffName == null ? 0 : tariffName.hashCode());
+        res = res * prime + (monthlyFee == null ? 0 : tariffName.hashCode());
+
+        if (extensionSet != null) {
+            for (TariffExtension ext : extensionSet) {
+                res = res * prime + (ext == null ? 0 : ext.hashCode());
+            }
         }
 
         return res;

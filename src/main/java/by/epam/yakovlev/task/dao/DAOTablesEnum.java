@@ -1,7 +1,5 @@
 package by.epam.yakovlev.task.dao;
 
-import java.io.File;
-
 public enum DAOTablesEnum {
 
     TARIFF("src\\main\\resources\\data_file\\TariffList.txt"),

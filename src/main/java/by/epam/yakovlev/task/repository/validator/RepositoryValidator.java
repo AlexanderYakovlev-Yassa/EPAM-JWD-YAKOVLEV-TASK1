@@ -1,7 +1,6 @@
 package by.epam.yakovlev.task.repository.validator;
 
 import by.epam.yakovlev.task.entity.*;
-import by.epam.yakovlev.task.repository.impl.RepositoryImpl;
 import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
@@ -19,23 +18,6 @@ public class RepositoryValidator {
     public static RepositoryValidator getINSTANCE() {
         return INSTANCE;
     }
-
-    /*public boolean isEntityValid(EntityTypeEnum table, MobilProviderCompatibleType anyEntity){
-
-        switch (table){
-            case TARIFF_PHONE_EXTENSION:{
-                return isPhoneExtensionValid(anyEntity);
-            }
-            case TARIFF_INTERNET_EXTENSION:{
-                return isInternetExtensionValid(anyEntity);
-            }
-            case TARIFF:{
-                return isTariffValid(anyEntity);
-            }
-        }
-
-        return false;
-    }*/
 
     public boolean isPhoneExtensionValid(MobilProviderCompatibleType anyEntity){
 

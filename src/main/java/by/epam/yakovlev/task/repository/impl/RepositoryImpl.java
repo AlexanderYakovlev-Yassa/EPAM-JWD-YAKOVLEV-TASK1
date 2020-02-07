@@ -25,29 +25,38 @@ public class RepositoryImpl implements Repository {
 
     private Logger LOGGER = Logger.getLogger(RepositoryImpl.class);
 
-    private HashSet<Tariff> tariff;
-    private HashSet<TariffExtension> phoneExtensionSet;
-    private HashSet<TariffExtension> internetExtensionSet;
+    private HashSet<MobilProviderCompatibleType> tariff;
+    private HashSet<MobilProviderCompatibleType> phoneExtensionSet;
+    private HashSet<MobilProviderCompatibleType> internetExtensionSet;
 
-    public HashSet<Tariff> getTariff() {
-        return tariff;
+    @Override
+    public MobilProviderCompatibleType getPhoneExtensionByName(String name) {
+
+        for (MobilProviderCompatibleType t : phoneExtensionSet) {
+            if (((PhoneExtension) t).getPhoneExtensionName().equals(name)) {
+                return t;
+            }
+        }
+
+        return null;
     }
 
-    public void setTariff(HashSet<Tariff> tariff) {
-        this.tariff = tariff;
-    }
+    @Override
+    public MobilProviderCompatibleType getInternetExtensionByName(String name) {
 
-    public HashSet<TariffExtension> getPhoneExtensionSet() {
-        return phoneExtensionSet;
-    }
+        for (MobilProviderCompatibleType t : internetExtensionSet) {
+            if (((InternetExtension) t).getInternetExtensionName().equals(name)) {
+                return t;
+            }
+        }
 
-
-    public HashSet<TariffExtension> getInternetExtensionSet() {
-        return internetExtensionSet;
+        return null;
     }
 
     @Override
     public ArrayList<MobilProviderCompatibleType> getResultList(Specification specification) {
+
+
         return null;
     }
 
@@ -59,9 +68,7 @@ public class RepositoryImpl implements Repository {
 
         phoneExtensionSet = new HashSet<>();
         atLeastOneTableInitialised =
-                fillTable(EntityTypeEnum.TARIFF_PHONE_EXTENSION) ?
-                        true :
-                        atLeastOneTableInitialised;
+                fillTable(EntityTypeEnum.TARIFF_PHONE_EXTENSION);
         if (phoneExtensionSet != null) {
             LOGGER.debug("phoneExtensionSet initialised");
         } else {
@@ -76,9 +83,7 @@ public class RepositoryImpl implements Repository {
 
         internetExtensionSet = new HashSet<>();
         atLeastOneTableInitialised =
-                fillTable(EntityTypeEnum.TARIFF_INTERNET_EXTENSION) ?
-                        true :
-                        atLeastOneTableInitialised;
+                fillTable(EntityTypeEnum.TARIFF_INTERNET_EXTENSION) || atLeastOneTableInitialised;
 
         if (internetExtensionSet != null) {
             LOGGER.debug("internetExtensionSet initialised");
@@ -92,41 +97,19 @@ public class RepositoryImpl implements Repository {
             LOGGER.debug("internetExtensionSet is empty");
         }
 
-
         tariff = new HashSet<>();
         atLeastOneTableInitialised =
-                fillTable(EntityTypeEnum.TARIFF) ?
-                        true :
-                        atLeastOneTableInitialised;
-
-        //******************************************************************************************
-        atLeastOneTableInitialised = atLeastOneTableInitialised ?
-                atLeastOneTableInitialised :
-                fillSIMCardTable();
-
-        atLeastOneTableInitialised = atLeastOneTableInitialised ?
-                atLeastOneTableInitialised :
-                fillCustomerTable();
+                fillTable(EntityTypeEnum.TARIFF) || atLeastOneTableInitialised;
 
         return atLeastOneTableInitialised;
     }
-
-    private boolean fillSIMCardTable() throws RepositoryException {
-        return false;
-    }
-
-    private boolean fillCustomerTable() throws RepositoryException {
-        return false;
-    }
-
-
 
     private boolean fillTable(EntityTypeEnum table) throws RepositoryException {
 
         DAOTablesEnum daoTable = null;
 
         for (DAOTablesEnum e : DAOTablesEnum.values()) {
-            if (table.name() == e.name()) {
+            if (table.name().equals(e.name())) {
                 daoTable = e;
             }
         }
@@ -153,12 +136,6 @@ public class RepositoryImpl implements Repository {
 
             temporaryEntity = APPLICATION_ENTITY_FACTORY.applicationEntityFactory(str, table);
 
-
-     /*if (!VALIDATOR.isEntityValid(table, temporaryEntity)) {
-     LOGGER.info("The 'entity' [" + str + "] is not valid and can't be added to repository");
-     }
-     TariffExtension tariffExtension = (TariffExtension) temporaryEntity;*/
-
             switch (table) {
                 case TARIFF_PHONE_EXTENSION: {
                     if (!VALIDATOR.isPhoneExtensionValid(temporaryEntity)) {
@@ -166,7 +143,7 @@ public class RepositoryImpl implements Repository {
                     }
                     TariffExtension tariffExtension = (TariffExtension) temporaryEntity;
 
-                    if (phoneExtensionSet.add(tariffExtension)) {
+                    if (phoneExtensionSet.add((PhoneExtension) tariffExtension)) {
                         atLeastOneAdded = true;
                     } else {
                         LOGGER.info("The phone tariff extension [" + str + "] is already in the repository");
@@ -179,7 +156,7 @@ public class RepositoryImpl implements Repository {
                     }
                     TariffExtension tariffExtension = (TariffExtension) temporaryEntity;
 
-                    if (internetExtensionSet.add(tariffExtension)) {
+                    if (internetExtensionSet.add((InternetExtension) tariffExtension)) {
                         atLeastOneAdded = true;
                     } else {
                         LOGGER.info("The internet tariff extension [" + temporaryEntity + "] is already in the repository");
@@ -203,164 +180,4 @@ public class RepositoryImpl implements Repository {
 
         return atLeastOneAdded;
     }
-
-    /******************************
-
-     private boolean fillPhoneExtensionTable() throws RepositoryException {
-
-     ArrayList<String> phoneExtensionList = null;
-
-     try {
-     phoneExtensionList = DAO_LOGIC.getListOf(DAOTablesEnum.TARIFF_PHONE_EXTENSION);
-     } catch (DAOException e) {
-     LOGGER.warn("Fail read the phone extension table", e);
-     return false;
-     }
-
-     if (phoneExtensionList == null) {
-     LOGGER.info("Nothing to add to the repository");
-     return false;
-     }
-
-     boolean atLeastOneAdded = false;
-     MobilProviderCompatibleType temporaryEntity = null;
-     EntityTypeEnum type = EntityTypeEnum.TARIFF_PHONE_EXTENSION;
-     for (String str : phoneExtensionList) {
-
-
-     temporaryEntity = APPLICATION_ENTITY_FACTORY.applicationEntityFactory(str, type);
-
-
-     if (!VALIDATOR.isPhoneExtensionValid(temporaryEntity)) {
-     LOGGER.info("The phone tariff extension [" + str + "] is not valid and can't be added to repository");
-     }
-     TariffExtension tariffExtension = (TariffExtension) temporaryEntity;
-
-     if (phoneExtensionSet.add(tariffExtension)) {
-     atLeastOneAdded = true;
-     } else {
-     LOGGER.info("The phone tariff extension [" + str + "] is already in the repository");
-     }
-     }
-
-     return atLeastOneAdded;
-     }
-
-     private boolean fillInternetExtensionTable() {
-
-     LOGGER.debug("fillInternetExtensionTable runs");
-
-     ArrayList<String> internetExtensionList = null;
-
-     try {
-     internetExtensionList = DAO_LOGIC.getListOf(DAOTablesEnum.TARIFF_INTERNET_EXTENSION);
-     } catch (DAOException e) {
-     LOGGER.warn("Fail read the internet extension table", e);
-     return false;
-     }
-
-     if (internetExtensionList == null) {
-     LOGGER.info("Nothing to add to the repository");
-     return false;
-     }
-
-     /*boolean atLeastOneAddwd = false;
-     for (MobilProviderCompatibleType m : internetExtensionList) {
-
-     if (!VALIDATOR.isInternetExtensionValid(m)) {
-     LOGGER.info("The internet tariff extension [" + m.toString() + "] is not valid and can't be added to repository");
-     }
-     TariffExtension tariffExtension = (TariffExtension) m;
-
-     if (internetExtensionSet.add(tariffExtension)) {
-     atLeastOneAddwd = true;
-     } else {
-     LOGGER.info("The internet tariff extension [" + m.toString() + "] is already in the repository");
-     }
-     }
-     boolean atLeastOneAdded = false;
-     MobilProviderCompatibleType temporaryEntity = null;
-     EntityTypeEnum type = EntityTypeEnum.TARIFF_INTERNET_EXTENSION;
-     for (String str : phoneExtensionList) {
-
-
-     temporaryEntity = APPLICATION_ENTITY_FACTORY.applicationEntityFactory(str, type);
-
-
-     if (!VALIDATOR.isPhoneExtensionValid(temporaryEntity)) {
-     LOGGER.info("The phone tariff extension [" + str + "] is not valid and can't be added to repository");
-     }
-     TariffExtension tariffExtension = (TariffExtension) temporaryEntity;
-
-     if (phoneExtensionSet.add(tariffExtension)) {
-     atLeastOneAdded = true;
-     } else {
-     LOGGER.info("The phone tariff extension [" + str + "] is already in the repository");
-     }
-     }
-
-     return atLeastOneAddwd;
-     }
-
-     public TariffExtension getExtension(TariffExtensionTables table, String name) {
-
-     if (name == null) {
-     return null;
-     }
-
-     for (TariffExtension t : phoneExtensionSet) {
-     switch (table) {
-     case PHONE: {
-     if (((PhoneExtension) t).getPhoneExtensionName() == name) {
-     return t;
-     }
-     }
-     case INTERNET: {
-     if (((InternetExtension) t).getInternetExtensionName() == name) {
-     return t;
-     }
-     }
-     }
-     }
-
-     return null;
-     }
-
-     //*******************************************************************************
-     private boolean fillTariffTable() {
-
-     LOGGER.debug("fillTariffExtensionTable runs");
-
-     ArrayList<MobilProviderCompatibleType> tariffList = null;
-
-     try {
-     tariffList = DAO_LOGIC.getListOf(DAOTablesEnum.TARIFF);
-     } catch (DAOException e) {
-     LOGGER.warn("Fail read the internet extension table", e);
-     return false;
-     }
-
-     if (tariffList == null) {
-     LOGGER.info("Nothing to add to the repository");
-     return false;
-     }
-
-     boolean atLeastOneAddwd = false;
-     for (MobilProviderCompatibleType m : tariffList) {
-
-     if (!VALIDATOR.isInternetExtensionValid(m)) {
-     LOGGER.info("The internet tariff extension [" + m.toString() + "] is not valid and can't be added to repository");
-     }
-     TariffExtension tariffExtension = (TariffExtension) m;
-
-     if (internetExtensionSet.add(tariffExtension)) {
-     atLeastOneAddwd = true;
-     } else {
-     LOGGER.info("The internet tariff extension [" + m.toString() + "] is already in the repository");
-     }
-     }
-
-     return atLeastOneAddwd;
-     }
-     ***************************************/
 }
