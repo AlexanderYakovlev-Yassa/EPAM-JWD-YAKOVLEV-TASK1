@@ -1,17 +1,15 @@
 package by.epam.yakovlev.task.repository;
 
-import by.epam.yakovlev.task.entity.MobilProviderCompatibleType;
-import by.epam.yakovlev.task.exception.RepositoryException;
+import by.epam.yakovlev.task.entity.RepositoryCompatibleType;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public interface Repository {
 
-    MobilProviderCompatibleType getPhoneExtensionByName(String name);
-    MobilProviderCompatibleType getInternetExtensionByName(String name);
+    void addEntity(Optional<RepositoryCompatibleType> entity);
+    void removeEntity(Optional<RepositoryCompatibleType> entity);
+    boolean updateEntity(Optional<RepositoryCompatibleType> entity);
 
-    ArrayList<MobilProviderCompatibleType> getResultList(Specification specification);
-
-    boolean initialise() throws RepositoryException;
-
+    ArrayList<Optional<RepositoryCompatibleType>> getResultList(Specification specification);
 }

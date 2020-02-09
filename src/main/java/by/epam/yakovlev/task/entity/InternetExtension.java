@@ -8,23 +8,23 @@ import java.math.BigDecimal;
 /**
  * Represents the part of a tariff that responsible for internet
  */
-public class InternetExtension implements Serializable, TariffExtension, MobilProviderCompatibleType {
+public class InternetExtension implements Serializable, TariffExtension, RepositoryCompatibleType {
 
     private String internetExtensionName;
 
-    private double includedTraffic;
+    private Double includedTraffic;
 
     /**
      * The measure unit of traffic limit is GB
      * -1 mean unlimited traffic
      */
-    private double trafficLimit;
+    private Double trafficLimit;
 
     /**
      * The measure unit of traffic speed limit is Mbps
      * -1 mean unlimited speed
      */
-    private double trafficSpeedLimit;
+    private Double trafficSpeedLimit;
 
     /**
      * The measure unit of traffic fee is BYN / MB
@@ -32,14 +32,9 @@ public class InternetExtension implements Serializable, TariffExtension, MobilPr
     private BigDecimal trafficFee;
 
     public InternetExtension() {
-        this.internetExtensionName = StringConstant.NO_NAME.getValue();
-        this.trafficFee = BigDecimal.valueOf(0.0);
-        this.trafficLimit = -1;
-        this.trafficSpeedLimit = -1;
-        this.includedTraffic = 0;
     }
 
-    public InternetExtension(String internetExtensionName, double includedTraffic, double trafficLimit, double trafficSpeedLimit, BigDecimal trafficFee) {
+    public InternetExtension(String internetExtensionName, Double includedTraffic, Double trafficLimit, Double trafficSpeedLimit, BigDecimal trafficFee) {
         this.internetExtensionName = internetExtensionName;
         this.includedTraffic = includedTraffic;
         this.trafficLimit = trafficLimit;
@@ -55,19 +50,19 @@ public class InternetExtension implements Serializable, TariffExtension, MobilPr
         this.internetExtensionName = internetExtensionName;
     }
 
-    public double getTrafficLimit() {
+    public Double getTrafficLimit() {
         return trafficLimit;
     }
 
-    public void setTrafficLimit(double trafficLimit) {
+    public void setTrafficLimit(Double trafficLimit) {
         this.trafficLimit = trafficLimit;
     }
 
-    public double getTrafficSpeedLimit() {
+    public Double getTrafficSpeedLimit() {
         return trafficSpeedLimit;
     }
 
-    public void setTrafficSpeedLimit(double trafficSpeedLimit) {
+    public void setTrafficSpeedLimit(Double trafficSpeedLimit) {
         this.trafficSpeedLimit = trafficSpeedLimit;
     }
 
@@ -79,11 +74,11 @@ public class InternetExtension implements Serializable, TariffExtension, MobilPr
         this.trafficFee = trafficFee;
     }
 
-    public double getIncludedTraffic() {
+    public Double getIncludedTraffic() {
         return includedTraffic;
     }
 
-    public void setIncludedTraffic(double includedTraffic) {
+    public void setIncludedTraffic(Double includedTraffic) {
         this.includedTraffic = includedTraffic;
     }
 
@@ -102,9 +97,9 @@ public class InternetExtension implements Serializable, TariffExtension, MobilPr
         InternetExtension that = (InternetExtension) o;
 
         return internetExtensionName.equals(that.internetExtensionName) &&
-                includedTraffic == that.includedTraffic &&
-                trafficLimit == that.trafficLimit &&
-                trafficSpeedLimit == that.trafficSpeedLimit &&
+                includedTraffic.compareTo(that.includedTraffic) == 0 &&
+                trafficLimit.compareTo(that.trafficLimit) == 0 &&
+                trafficSpeedLimit.compareTo(that.trafficSpeedLimit) == 0 &&
                 trafficFee.compareTo(that.trafficFee) == 0;
     }
 
@@ -113,10 +108,10 @@ public class InternetExtension implements Serializable, TariffExtension, MobilPr
         int prime = 31;
         int res = 7;
 
-        res = res * prime + (this.internetExtensionName != null ? this.internetExtensionName.hashCode() : 0);
-        res = res * prime + Double.hashCode(includedTraffic);
-        res = res * prime + Double.hashCode(trafficLimit);
-        res = res * prime + Double.hashCode(trafficSpeedLimit);
+        res = res * prime + (internetExtensionName != null ? internetExtensionName.hashCode() : 0);
+        res = res * prime + (includedTraffic != null ? Double.hashCode(includedTraffic) : 0);
+        res = res * prime + (trafficLimit != null ? Double.hashCode(trafficLimit) : 0);
+        res = res * prime + (trafficSpeedLimit != null ? Double.hashCode(trafficSpeedLimit) : 0);
         res = res * prime + (trafficFee != null ? trafficFee.hashCode() : 0);
 
         return res;

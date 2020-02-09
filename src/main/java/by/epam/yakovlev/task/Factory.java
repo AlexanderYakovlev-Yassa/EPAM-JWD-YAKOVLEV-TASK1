@@ -1,13 +1,13 @@
 package by.epam.yakovlev.task;
 
-import by.epam.yakovlev.task.entity_logic.MobilProviderFactory;
-import by.epam.yakovlev.task.entity_logic.impl.MobilProviderFactoryImpl;
+import by.epam.yakovlev.task.entity_logic.OldMobilProviderFactory;
+import by.epam.yakovlev.task.entity_logic.impl.OldMobilProviderFactoryImpl;
 
 public class Factory {
 
     private final static Factory INSTANCE = new Factory();
 
-    private MobilProviderFactory mobilProviderFactory = new MobilProviderFactoryImpl();
+    private OldMobilProviderFactory mobilProviderFactory = new OldMobilProviderFactoryImpl();
 
     private Factory(){
     }
@@ -16,7 +16,7 @@ public class Factory {
         return INSTANCE;
     }
 
-    public MobilProviderFactory getMobilProviderFactory() {
+    public OldMobilProviderFactory getMobilProviderFactory() {
         return mobilProviderFactory;
     }
 

@@ -10,8 +10,6 @@ public abstract class AbstractTariff {
     protected BigDecimal monthlyFee;
 
     public AbstractTariff() {
-        this.tariffName = StringConstant.NO_NAME.getValue();
-        this.monthlyFee = BigDecimal.valueOf(0.0);
     }
 
     public AbstractTariff(String tariffName, BigDecimal monthlyFee) {

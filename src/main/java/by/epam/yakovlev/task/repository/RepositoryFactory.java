@@ -1,21 +1,22 @@
 package by.epam.yakovlev.task.repository;
 
-import by.epam.yakovlev.task.repository.impl.RepositoryImpl;
+
+import by.epam.yakovlev.task.repository.impl.RepositoryImplementation;
 
 public class RepositoryFactory {
 
     private static final RepositoryFactory INSTANCE = new RepositoryFactory();
 
-    private final Repository REPOSITORY = new RepositoryImpl();
+    private Repository repository = RepositoryImplementation.getINSTANCE();
 
-    public RepositoryFactory() {
+    private RepositoryFactory() {
     }
 
     public static RepositoryFactory getINSTANCE() {
         return INSTANCE;
     }
 
-    public Repository getREPOSITORY() {
-        return REPOSITORY;
+    public Repository getRepository() {
+        return repository;
     }
 }

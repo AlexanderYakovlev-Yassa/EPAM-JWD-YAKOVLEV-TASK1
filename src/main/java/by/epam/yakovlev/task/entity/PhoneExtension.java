@@ -1,27 +1,25 @@
 package by.epam.yakovlev.task.entity;
 
-import by.epam.yakovlev.task.StringConstant;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class PhoneExtension implements Serializable, TariffExtension, MobilProviderCompatibleType {
+public class PhoneExtension implements Serializable, TariffExtension, RepositoryCompatibleType {
 
     private String phoneExtensionName;
     private BigDecimal incomeCallFee;
     private BigDecimal outcomeCallFee;
-    private int innerProviderIncludedMinutes;
-    private int anyProviderIncludedMinutes;
+    private Integer innerProviderIncludedMinutes;
+    private Integer anyProviderIncludedMinutes;
 
     public PhoneExtension() {
-        phoneExtensionName = StringConstant.NO_NAME.getValue();
+
     }
 
     public PhoneExtension(String phoneExtensionName,
                           BigDecimal incomeCallFee,
                           BigDecimal outcomeCallFee,
-                          int innerProviderIncludedMinutes,
-                          int anyProviderIncludedMinutes) {
+                          Integer innerProviderIncludedMinutes,
+                          Integer anyProviderIncludedMinutes) {
         this.phoneExtensionName = phoneExtensionName;
         this.incomeCallFee = incomeCallFee;
         this.outcomeCallFee = outcomeCallFee;
@@ -53,19 +51,19 @@ public class PhoneExtension implements Serializable, TariffExtension, MobilProvi
         this.outcomeCallFee = outcomeCallFee;
     }
 
-    public int getInnerProviderIncludedMinutes() {
+    public Integer getInnerProviderIncludedMinutes() {
         return innerProviderIncludedMinutes;
     }
 
-    public void setInnerProviderIncludedMinutes(int innerProviderIncludedMinutes) {
+    public void setInnerProviderIncludedMinutes(Integer innerProviderIncludedMinutes) {
         this.innerProviderIncludedMinutes = innerProviderIncludedMinutes;
     }
 
-    public int getAnyProviderIncludedMinutes() {
+    public Integer getAnyProviderIncludedMinutes() {
         return anyProviderIncludedMinutes;
     }
 
-    public void setAnyProviderIncludedMinutes(int anyProviderIncludedMinutes) {
+    public void setAnyProviderIncludedMinutes(Integer anyProviderIncludedMinutes) {
         this.anyProviderIncludedMinutes = anyProviderIncludedMinutes;
     }
 
@@ -84,8 +82,8 @@ public class PhoneExtension implements Serializable, TariffExtension, MobilProvi
         return phoneExtensionName.equals(that.phoneExtensionName) &&
                 incomeCallFee.compareTo(that.incomeCallFee) == 0 &&
                 outcomeCallFee.compareTo(that.outcomeCallFee) == 0 &&
-                this.innerProviderIncludedMinutes == that.innerProviderIncludedMinutes &&
-                this.anyProviderIncludedMinutes == that.anyProviderIncludedMinutes;
+                this.innerProviderIncludedMinutes.compareTo(that.innerProviderIncludedMinutes) == 0 &&
+                this.anyProviderIncludedMinutes.compareTo(that.anyProviderIncludedMinutes) == 0;
     }
 
     @Override
@@ -96,8 +94,8 @@ public class PhoneExtension implements Serializable, TariffExtension, MobilProvi
         res = res * prime + (this.phoneExtensionName != null ? this.phoneExtensionName.hashCode() : 0);
         res = res * prime + (incomeCallFee != null ? incomeCallFee.hashCode() : 0);
         res = res * prime + (outcomeCallFee != null ? outcomeCallFee.hashCode() : 0);
-        res = res * prime + innerProviderIncludedMinutes;
-        res = res * prime + anyProviderIncludedMinutes;
+        res = res * prime + (innerProviderIncludedMinutes != null ? innerProviderIncludedMinutes.hashCode() : 0);
+        res = res * prime + (anyProviderIncludedMinutes != null ? anyProviderIncludedMinutes.hashCode() : 0);
 
         return res;
     }

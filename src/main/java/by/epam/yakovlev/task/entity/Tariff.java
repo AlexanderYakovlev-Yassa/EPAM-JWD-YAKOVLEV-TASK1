@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashSet;
 
-public class Tariff extends AbstractTariff implements Serializable, MobilProviderCompatibleType {
+public class Tariff extends AbstractTariff implements Serializable, RepositoryCompatibleType {
 
     private HashSet<TariffExtension> extensionSet;
 
@@ -67,13 +67,6 @@ public class Tariff extends AbstractTariff implements Serializable, MobilProvide
         if (this.extensionSet.size() != that.extensionSet.size()){
             return false;
         }
-
-        /*for (TariffExtension t : extensionSet) {
-            System.out.println(" this " + t.toString());
-        }
-        for (TariffExtension t : that.extensionSet) {
-            System.out.println(" that " + t.toString());
-        }*/
 
         return extensionSet.equals(that.extensionSet) ;
     }
